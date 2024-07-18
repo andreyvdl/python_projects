@@ -4,11 +4,17 @@ class Stack:
 	def __init__(self):
 		self.numbers = deque()
 
+	def __str__(self):
+		return self.numbers.__str__()
+
+	def __len__(self):
+		return len(self.numbers)
+
 	def rot(self):
-		self.numbers.rotate(1)
+		self.numbers.rotate(-1)
 
 	def rev_rot(self):
-		self.numbers.rotate(-1)
+		self.numbers.rotate(1)
 
 	def swap(self):
 		self.numbers[0], self.numbers[1] = self.numbers[1], self.numbers[0]

@@ -1,9 +1,12 @@
-import StackClass
+from stack import Stack
 
 class PushSwap:
 	def __init__(self):
-		self.stack_a = StackClass()
-		self.stack_b = StackClass()
+		self.stack_a = Stack()
+		self.stack_b = Stack()
+
+	def __str__(self):
+		return str(self.stack_a.numbers) + "\n" + str(self.stack_b.numbers)
 
 	def rot_a(self):
 		if len(self.stack_a) < 2:
@@ -54,13 +57,13 @@ class PushSwap:
 		self.stack_b.swap()
 
 	def push_a(self):
-		if len(self.stack_a) == 0:
-			return
-		num = self.stack_a.pop()
-		self.stack_b.push(x)
-
-	def push_b(self):
 		if len(self.stack_b) == 0:
 			return
 		num = self.stack_b.pop()
-		self.stack_a.push(x)
+		self.stack_a.push(num)
+
+	def push_b(self):
+		if len(self.stack_a) == 0:
+			return
+		num = self.stack_a.pop()
+		self.stack_b.push(num)
