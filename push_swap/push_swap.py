@@ -7,7 +7,7 @@ class PushSwap:
         self.stack_b = Stack()
 
     def __str__(self):
-        return str(self.stack_a.numbers) + "\n" + str(self.stack_b.numbers)
+        return f"Stack A:[{self.stack_a}]\nStack B:[{self.stack_b}]"
 
     def rot_a(self):
         if len(self.stack_a) < 2:

@@ -6,7 +6,10 @@ class Stack:
         self.numbers = deque()
 
     def __str__(self):
-        return self.numbers.__str__()
+        stack = str()
+        for n in self.numbers:
+            stack += f"{str(n)} "
+        return stack.strip()
 
     def __len__(self):
         return len(self.numbers)
