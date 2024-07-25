@@ -73,6 +73,86 @@ class testPushSwap(unittest.TestCase):
         self.assertEqual(ps.stack_b.numbers, expected_b,
                          "LINE " + str(getframeinfo(currentframe()).lineno))
 
+    def test_rot(self):
+        ps = PushSwap()
+        ps.stack_a.numbers.extend([1, 2, 3, 4])
+        expected_a = deque([1, 2, 3, 4])
+        expected_b = deque([])
+        self.assertEqual(ps.stack_a.numbers, expected_a,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        self.assertEqual(ps.stack_b.numbers, expected_b,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        ps.rot_a()
+        expected_a = deque([2, 3, 4, 1])
+        expected_b = deque([])
+        self.assertEqual(ps.stack_a.numbers, expected_a,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        self.assertEqual(ps.stack_b.numbers, expected_b,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        ps.rot_b()
+        expected_a = deque([2, 3, 4, 1])
+        expected_b = deque([])
+        self.assertEqual(ps.stack_a.numbers, expected_a,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        self.assertEqual(ps.stack_b.numbers, expected_b,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        ps.push_b()
+        ps.push_b()
+        ps.rot_a()
+        expected_a = deque([1, 4])
+        expected_b = deque([3, 2])
+        self.assertEqual(ps.stack_a.numbers, expected_a,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        self.assertEqual(ps.stack_b.numbers, expected_b,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        ps.rot_rot()
+        expected_a = deque([4, 1])
+        expected_b = deque([2, 3])
+        self.assertEqual(ps.stack_a.numbers, expected_a,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        self.assertEqual(ps.stack_b.numbers, expected_b,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+
+    def test_rev_rot(self):
+        ps = PushSwap()
+        ps.stack_a.numbers.extend([1, 2, 3, 4])
+        expected_a = deque([1, 2, 3, 4])
+        expected_b = deque([])
+        self.assertEqual(ps.stack_a.numbers, expected_a,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        self.assertEqual(ps.stack_b.numbers, expected_b,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        ps.rev_rot_a()
+        expected_a = deque([4, 1, 2, 3])
+        expected_b = deque([])
+        self.assertEqual(ps.stack_a.numbers, expected_a,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        self.assertEqual(ps.stack_b.numbers, expected_b,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        ps.rev_rot_b()
+        expected_a = deque([4, 1, 2, 3])
+        expected_b = deque([])
+        self.assertEqual(ps.stack_a.numbers, expected_a,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        self.assertEqual(ps.stack_b.numbers, expected_b,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        ps.push_b()
+        ps.push_b()
+        ps.rev_rot_a()
+        expected_a = deque([3, 2])
+        expected_b = deque([1, 4])
+        self.assertEqual(ps.stack_a.numbers, expected_a,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        self.assertEqual(ps.stack_b.numbers, expected_b,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        ps.rev_rot_rot()
+        expected_a = deque([2, 3])
+        expected_b = deque([4, 1])
+        self.assertEqual(ps.stack_a.numbers, expected_a,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+        self.assertEqual(ps.stack_b.numbers, expected_b,
+                         "LINE " + str(getframeinfo(currentframe()).lineno))
+
     def testPDF(self):
         # creating object
         ps = PushSwap()
