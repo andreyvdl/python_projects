@@ -21,6 +21,7 @@ if __name__ == "__main__":
         except ValueError:
             sys.exit(f"Cannot convert {num} to int")
 
+    ps.ready()
     if len(ps.stack_a) < 2 or ps.is_sorted():
         pass
     elif len(ps.stack_a) == 2:

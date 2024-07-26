@@ -6,6 +6,7 @@ class PushSwap:
     def __init__(self):
         self.stack_a = Stack()
         self.stack_b = Stack()
+        self.sorted = Stack()
         self.moves = int()
 
     def __str__(self):
@@ -16,11 +17,14 @@ class PushSwap:
         for n in self.stack_a.numbers:
             yield n
 
+    def ready(self):
+        self.sorted.numbers = deque(sorted(self.stack_a.numbers))
+
     def add_number(self, num):
         self.stack_a.add(num)
 
     def is_sorted(self):
-        return self.stack_a.numbers == deque(sorted(self.stack_a.numbers))
+        return self.stack_a.numbers == self.sorted.numbers
 
     def sort_three(self):
         while not self.is_sorted():
@@ -31,6 +35,8 @@ class PushSwap:
                 self.rot_a()
             elif a < b and a > c:
                 self.rev_rot_a()
+            elif a < b and a < c:
+                self.swap_a()
 
     def rot_a(self):
         if len(self.stack_a) < 2:
