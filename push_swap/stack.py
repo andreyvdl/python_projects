@@ -11,6 +11,9 @@ class Stack:
             stack += f"{str(n)} "
         return stack.strip()
 
+    def add(self, num):
+        self.numbers.append(num)
+
     def __len__(self):
         return len(self.numbers)
 
