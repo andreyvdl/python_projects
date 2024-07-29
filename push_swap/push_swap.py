@@ -24,19 +24,7 @@ class PushSwap:
         self.stack_a.add(num)
 
     def is_sorted(self):
-        return self.stack_a.numbers == self.sorted.numbers
-
-    def sort_three(self):
-        while not self.is_sorted():
-            a, b, c = self.stack_a.numbers
-            if a > b and a < c:
-                self.swap_a()
-            elif a > b and a > c:
-                self.rot_a()
-            elif a < b and a > c:
-                self.rev_rot_a()
-            elif a < b and a < c:
-                self.swap_a()
+        return self.stack_a.numbers == deque(sorted(self.stack_a.numbers))
 
     def rot_a(self):
         if len(self.stack_a) < 2:

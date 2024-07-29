@@ -11,11 +11,14 @@ class Stack:
             stack += f"{str(n)} "
         return stack.strip()
 
-    def add(self, num):
-        self.numbers.append(num)
-
     def __len__(self):
         return len(self.numbers)
+
+    def __getitem__(self, index):
+        return self.numbers[index]
+
+    def add(self, num):
+        self.numbers.append(num)
 
     def rot(self):
         self.numbers.rotate(-1)
