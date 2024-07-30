@@ -6,13 +6,13 @@ def selection_sort(ps: PushSwap):
     point = int()
 
     while len(ps.stack_a) > 3:
-        for i in range(0, len(ps.stack_a)):
+        for i in range(len(ps.stack_a)):
             if ps.sorted[point] == ps.stack_a[i]:
                 move_and_push(ps, ps.stack_a[i], get_rot(ps, i))
                 break
         point += 1
     sort_three(ps)
-    while len(ps.stack_b) > 0:
+    for _ in range(len(ps.stack_b)):
         ps.push_a()
 
 
