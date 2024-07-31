@@ -20,18 +20,23 @@ if __name__ == "__main__":
             elif num > 2147483647:
                 sys.exit(f"{num} is bigger than 214783647")
             ps.add_number(num)
+
         except ValueError:
             sys.exit(f'Cannot convert "{sys.argv[i]}" to int')
 
     ps.ready()
     if len(ps.stack_a) < 2 or ps.is_sorted():
         pass
+
     elif len(ps.stack_a) == 2:
         ps.swap_a()
+
     elif len(ps.stack_a) == 3:
         sort_three(ps)
+
     elif len(ps.stack_a) < 16:
         selection_sort(ps)
+
     # else:
     #     merge_insertion_sort(ps)
 

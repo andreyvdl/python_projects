@@ -29,6 +29,7 @@ class PushSwap:
     def rot_a(self):
         if len(self.stack_a) < 2:
             return
+
         self.stack_a.rot()
         self.moves += 1
         print("ra")
@@ -36,6 +37,7 @@ class PushSwap:
     def rot_b(self):
         if len(self.stack_b) < 2:
             return
+
         self.stack_b.rot()
         self.moves += 1
         print("rb")
@@ -43,6 +45,7 @@ class PushSwap:
     def rot_rot(self):
         if len(self.stack_a) < 2 or len(self.stack_b) < 2:
             return
+
         self.stack_a.rot()
         self.stack_b.rot()
         self.moves += 1
@@ -51,6 +54,7 @@ class PushSwap:
     def rev_rot_a(self):
         if len(self.stack_a) < 2:
             return
+
         self.stack_a.rev_rot()
         self.moves += 1
         print("rra")
@@ -58,6 +62,7 @@ class PushSwap:
     def rev_rot_b(self):
         if len(self.stack_b) < 2:
             return
+
         self.stack_b.rev_rot()
         self.moves += 1
         print("rrb")
@@ -65,6 +70,7 @@ class PushSwap:
     def rev_rot_rot(self):
         if len(self.stack_a) < 2 or len(self.stack_b) < 2:
             return
+
         self.stack_a.rev_rot()
         self.stack_b.rev_rot()
         self.moves += 1
@@ -73,6 +79,7 @@ class PushSwap:
     def swap_a(self):
         if len(self.stack_a) < 2:
             return
+
         self.stack_a.swap()
         self.moves += 1
         print("sa")
@@ -87,6 +94,7 @@ class PushSwap:
     def swap_swap(self):
         if len(self.stack_a) < 2 or len(self.stack_b) < 2:
             return
+
         self.stack_a.swap()
         self.stack_b.swap()
         self.moves += 1
@@ -95,6 +103,7 @@ class PushSwap:
     def push_a(self):
         if len(self.stack_b) == 0:
             return
+
         num = self.stack_b.pop()
         self.stack_a.push(num)
         self.moves += 1
@@ -103,6 +112,7 @@ class PushSwap:
     def push_b(self):
         if len(self.stack_a) == 0:
             return
+
         num = self.stack_a.pop()
         self.stack_b.push(num)
         self.moves += 1
