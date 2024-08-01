@@ -2,6 +2,7 @@ import sys
 from push_swap import PushSwap
 from sort_three import sort_three
 from selection_sort import selection_sort
+from merge_insertion_sort import merge_insertion_sort
 
 
 if __name__ == "__main__":
@@ -34,10 +35,10 @@ if __name__ == "__main__":
     elif len(ps.stack_a) == 3:
         sort_three(ps)
 
-    elif len(ps.stack_a) < 16:
-        selection_sort(ps)
+    # elif len(ps.stack_a) < 16:
+    #     selection_sort(ps)
 
-    # else:
-    #     merge_insertion_sort(ps)
+    else:
+        merge_insertion_sort(ps)
 
     print(ps)
