@@ -1,20 +1,5 @@
 from push_swap import PushSwap
 
-'''
-1. Group the elements of X into _n/2_ pairs of elements, arbitrarily,
-leaving one element unpaired if there is an odd number of elements.
-2. Perform [n/2] comparisons, one per pair, to determine the larger of the
-two elements in each pair.
-3. Recursively sort the _n/2_ larger elements from each pair, creating a
-sorted sequence S of _n/2_ of the input elements, in ascending order.
-4. Insert at the start of S the element that was paired with the first and
-smallest element of S.
-5. Insert the remaining ^n/2^-1 elements of X\\S into one at a time, with a
-specially chosen insertion ordering described below. Use binary search in
-subsequences of S to determine the position at which each element should
-be inserted.
-'''
-
 
 def merge_insertion_sort(ps: PushSwap):
     send_all_to_b(ps, len(ps.stack_a) & 1 == 0)
@@ -58,61 +43,39 @@ def sort_biggers(ps: PushSwap):
         if ps.stack_b[0] < ps.stack_b[1]:
             ps.swap_b()
 
-        repeat, func = binary_search_pos(ps)
+        repeat, func = non_binary_search_pos(ps)
         for _ in range(repeat):
             func()
 
         ps.push_a()
-        if ps.stack_a[0] > ps.stack_a[1]:
-            ps.swap_a()
         ps.rot_b()
-        if func is ps.rot_a:
-            for _ in range(repeat):
-                ps.rev_rot_a()
-
-        else:
-            for _ in range(repeat):
-                ps.rot_a()
+        func = ps.rev_rot_a if func is ps.rot_a else ps.rot_a
+        while not ps.is_sorted():
+            func()
 
 
 def sort_rest(ps: PushSwap):
-    print(ps)
     while len(ps.stack_b) > 0:
-        repeat, func = binary_search_pos(ps)
-        print(repeat)
+        repeat, func = non_binary_search_pos(ps)
         for _ in range(repeat):
             func()
 
         ps.push_a()
-        if ps.stack_a[0] > ps.stack_a[1]:
-            ps.swap_a()
-
-        if func is ps.rot_a:
-            for _ in range(repeat):
-                ps.rev_rot_a()
-
-        else:
-            for _ in range(repeat):
-                ps.rot_a()
-
-        print(ps)
+        func = ps.rev_rot_a if func is ps.rot_a else ps.rot_a
+        while not ps.is_sorted():
+            func()
 
 
 # fix banary search
-def binary_search_pos(ps: PushSwap):
-    left = int()
-    right = len(ps.stack_a)
-    mid = 42
+def non_binary_search_pos(ps: PushSwap):
+    i = int()
+    while i < len(ps.stack_a):
+        if ps.stack_a[i] > ps.stack_b[0]:
+            break
 
-    while left < right and mid != 0:
-        mid = (right - left) // 2
-        if ps.stack_a[left + mid] < ps.stack_b[0]:
-            left = left + mid + 1
+        i += 1
 
-        else:
-            right = left + mid - 1
+    if i <= len(ps.stack_a) // 2:
+        return i, ps.rot_a
 
-    if left <= len(ps.stack_a) // 2:
-        return left, ps.rot_a
-
-    return left, ps.rev_rot_a
+    return len(ps.stack_a) - i, ps.rev_rot_a
